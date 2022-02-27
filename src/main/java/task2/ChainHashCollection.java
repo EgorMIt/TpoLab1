@@ -4,7 +4,6 @@ import java.util.*;
 
 public class ChainHashCollection<T extends Number> implements HashSort<T> {
     private final Integer maxValue = 1000;
-    //private Integer quantity = 0;
     private final Vector<SortedMap<T, Integer>> collection;
 
     public ChainHashCollection(){
@@ -30,13 +29,15 @@ public class ChainHashCollection<T extends Number> implements HashSort<T> {
         int index = 0;
         for (SortedMap<T, Integer> map: collection) {
             for (T val: map.keySet()) {
-                arr[index++] = val;
+                for (int i = 0; i < map.get(val); i++) {
+                    arr[index++] = val;
+                }
             }
         }
         collection.clear();
     }
 
-    public void sortBC(T[] arr, BreadCrunch bc) {
+    public void sortBC(T[] arr, BreadCrumbs bc) {
         if (arr == null) return;
         for (int i = 0; i <= arr.length; i++) {
             collection.add(new TreeMap<>());
@@ -56,8 +57,10 @@ public class ChainHashCollection<T extends Number> implements HashSort<T> {
         int index = 0;
         for (SortedMap<T, Integer> map: collection) {
             for (T val: map.keySet()) {
-                arr[index++] = val;
-                bc.appendCrumb((int)val);
+                for (int i = 0; i < map.get(val); i++) {
+                    arr[index++] = val;
+                    bc.appendCrumb((Integer)val);
+                }
             }
         }
         collection.clear();

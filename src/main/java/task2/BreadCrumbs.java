@@ -1,6 +1,6 @@
 package task2;
 
-public class BreadCrunch {
+public class BreadCrumbs {
     private String trace = "";
 
     public String getTrace() {

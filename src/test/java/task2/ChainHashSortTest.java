@@ -17,7 +17,7 @@ class ChainHashSortTest {
 
     @Test
     void sort() {
-        BreadCrunch bc = new BreadCrunch();
+        BreadCrumbs bc = new BreadCrumbs();
         Integer[] arr = new Integer[]{436, 866, 876, 640, 756, 625, 337, 815, 649, 235};
         Integer[] sortedArr = new Integer[]{235, 337, 436, 625, 640, 649, 756, 815, 866, 876};
         String expected = "f4f9f9f7f8f6f3f8f7f2f235f337f436f625f640f649f756f815f866f876";
@@ -44,8 +44,8 @@ class ChainHashSortTest {
 
     @Test
     void checkRepeatitions() {
-        Integer[] repeatedArray = new Integer[]{0, 0, 0, 0, 0, 0};
-        Integer[] repeatedResult = new Integer[]{0, 0, 0, 0, 0, 0};
+        Integer[] repeatedArray = new Integer[]{0, 0, 1, 0, 0, 0};
+        Integer[] repeatedResult = new Integer[]{0, 0, 0, 0, 0, 1};
         sorter.sort(repeatedArray);
         assertArrayEquals(repeatedResult, repeatedArray);
     }
