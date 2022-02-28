@@ -17,8 +17,9 @@ public class ChainHashCollection<T extends Number> implements HashSort<T> {
             collection.add(new TreeMap<>());
         }
         for (T t : arr) {
-            if (maxValue <= Math.abs((Integer) t)) {
-                System.err.println("Maximum value exceed");
+            if (maxValue <= (Integer) t || (Integer) t <= -maxValue) {
+                System.err.println("Превышено максимальное значение. Введите числа меньше по модулю, чем "+maxValue);
+                System.err.println("Вы ввели: " +t);
                 continue;
             }
             int index = countHash(t);
@@ -51,8 +52,11 @@ public class ChainHashCollection<T extends Number> implements HashSort<T> {
             int index = countHash(t);
             if (collection.get(index).containsKey(t)) {
                 collection.get(index).put(t, collection.get(index).get(t) + 1);
-            } else collection.get(index).put(t, 1);
-            bc.appendCrumb(index);
+                bc.appendCrumb(index+1);
+            } else {
+                collection.get(index).put(t, 1);
+                bc.appendCrumb(index);
+            }
         }
         int index = 0;
         for (SortedMap<T, Integer> map: collection) {
